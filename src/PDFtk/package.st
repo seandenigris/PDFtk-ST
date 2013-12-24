@@ -1,1 +1,1 @@
-Package { #name : #Pdftk }
+Package { #name : #PDFtk }

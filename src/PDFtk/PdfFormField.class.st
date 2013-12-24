@@ -6,7 +6,7 @@ Class {
 		'value',
 		'default'
 	],
-	#category : #Pdftk
+	#category : #PDFtk
 }
 
 { #category : #accessing }

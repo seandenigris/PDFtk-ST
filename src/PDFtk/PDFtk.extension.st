@@ -1,7 +1,7 @@
-Extension { #name : #Pdftk }
+Extension { #name : #PDFtk }
 
-{ #category : #'*Pdftk-Specification' }
-Pdftk classSide >> sampleFieldDumpOutput [
+{ #category : #'*PDFtk-Specification' }
+PDFtk classSide >> sampleFieldDumpOutput [
 
 	^ '---
 FieldType: Text

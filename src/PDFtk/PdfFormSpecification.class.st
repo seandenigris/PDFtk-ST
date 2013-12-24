@@ -1,7 +1,7 @@
 Class {
 	#name : #PdfFormSpecification,
 	#superclass : #TestCase,
-	#category : #'Pdftk-Specification'
+	#category : #'PDFtk-Specification'
 }
 
 { #category : #'tests-unit' }

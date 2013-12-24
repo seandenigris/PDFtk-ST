@@ -7,7 +7,7 @@ Class {
 	#classInstVars : [
 		'answers'
 	],
-	#category : #'Pdftk-Specification'
+	#category : #'PDFtk-Specification'
 }
 
 { #category : #'as yet unclassified' }

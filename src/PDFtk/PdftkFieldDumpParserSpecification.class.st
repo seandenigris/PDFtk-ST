@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'sampleInput'
 	],
-	#category : #'Pdftk-Specification'
+	#category : #'PDFtk-Specification'
 }
 
 { #category : #private }
@@ -31,7 +31,7 @@ FieldValue: 1
 FieldJustification: Center
 '.
 
-	field := PdftkFieldDumpParser new field parse: self sampleInput.
+	field := PDFtkFieldDumpParser new field parse: self sampleInput.
 	field name should = 'Station'.
 	field value should = '1'.
 	
@@ -50,7 +50,7 @@ FieldValueDefault: 10
 FieldJustification: Center
 '.
 
-	field := PdftkFieldDumpParser new field end parse: self sampleInput.
+	field := PDFtkFieldDumpParser new field end parse: self sampleInput.
 	field default should = '10'.
 ]
 
@@ -65,7 +65,7 @@ FieldFlags: 0
 FieldJustification: Center
 '.
 
-	field := PdftkFieldDumpParser new field parse: self sampleInput.
+	field := PDFtkFieldDumpParser new field parse: self sampleInput.
 	field name should = 'Station'.
 	field value should = ''.
 	
@@ -78,7 +78,7 @@ PdftkFieldDumpParserSpecification >> testMandatoryAttributeLine [
 	self sampleInput: 'FieldName: MyField
 '.
 
-	parser := PdftkFieldDumpParser new attributeNamed: 'FieldName'.
+	parser := PDFtkFieldDumpParser new attributeNamed: 'FieldName'.
 	value := parser parse: self sampleInput.
 	value should = 'MyField'.
 ]
@@ -90,7 +90,7 @@ PdftkFieldDumpParserSpecification >> testOptionalAttributeLine [
 	self sampleInput: 'FieldName: MyField
 '.
 
-	parser := PdftkFieldDumpParser new optionalAttributeNamed: 'FieldName'.
+	parser := PDFtkFieldDumpParser new optionalAttributeNamed: 'FieldName'.
 	value := parser parse: self sampleInput.
 	value should = 'MyField'.
 ]
@@ -113,7 +113,7 @@ FieldValue: Jimmy
 FieldJustification: Left
 '.
 
-	fields := PdftkFieldDumpParser parse: self sampleInput.
+	fields := PDFtkFieldDumpParser parse: self sampleInput.
 	fields first name should = 'Station'.
 	fields first value should = '1'.
 	fields second name should = 'Relief'.

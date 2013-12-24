@@ -8,29 +8,30 @@ where:
 - operation seems mostly to be a keyword and possibly a file argument (any of three kinds above)
 "
 Class {
-	#name : #Pdftk,
+	#name : #PDFtk,
 	#superclass : #Object,
 	#instVars : [
 		'command',
 		'outputConverter',
 		'outputFlag',
 		'operation',
-		'inputFile'
+		'inputFile',
+		'operationInput'
 	],
 	#classInstVars : [
 		'runnerClass'
 	],
-	#category : #Pdftk
+	#category : #PDFtk
 }
 
 { #category : #accessing }
-Pdftk class >> binary [
+PDFtk class >> binary [
 
 	^ '/usr/local/bin/pdftk' asFileReference.
 ]
 
 { #category : #'as yet unclassified' }
-Pdftk class >> dumpFieldsOf: aPdfForm [ 
+PDFtk class >> dumpFieldsOf: aPdfForm [ 
 
 	^ self new
 		dumpFieldsOf: aPdfForm;
@@ -38,19 +39,19 @@ Pdftk class >> dumpFieldsOf: aPdfForm [
 ]
 
 { #category : #accessing }
-Pdftk class >> runnerClass [
+PDFtk class >> runnerClass [
 
 	^ runnerClass
 ]
 
 { #category : #'as yet unclassified' }
-Pdftk class >> runnerClass: aClass [
+PDFtk class >> runnerClass: aClass [
 
 	 runnerClass := aClass.
 ]
 
-{ #category : #'*Pdftk-Specification' }
-Pdftk class >> sampleFieldDumpOutput [
+{ #category : #'*PDFtk-Specification' }
+PDFtk class >> sampleFieldDumpOutput [
 
 	^ '---
 FieldType: Text
@@ -62,64 +63,72 @@ FieldJustification: Center
 ]
 
 { #category : #private }
-Pdftk >> command [
+PDFtk >> command [
 
 	| commandTemplate |
 	commandTemplate := '"{1}" "{2}" {3} {4}'.
-	^ commandTemplate format: { self class binary fullName. inputFile fullName. operation. self outputFlag }.
+	^ commandTemplate format: { self class binary fullName. inputFile fullName. self operation. self outputFlag }.
 ]
 
 { #category : #'as yet unclassified' }
-Pdftk >> dumpFieldsOf: aPdfForm [ 
+PDFtk >> dumpFieldsOf: aPdfForm [ 
 
 	inputFile := aPdfForm.
 	operation := 'dump_data_fields'.
 	outputConverter := [ :string | | result |
-		result := PdftkFieldDumpParser parse: string.
+		result := PDFtkFieldDumpParser parse: string.
 		(result isKindOf: PPFailure) ifTrue: [ self error: 'parse failure: ', result message ].
 		result ].
 ]
 
 { #category : #'as yet unclassified' }
-Pdftk >> generateFdfFor: aPdfForm [ 
+PDFtk >> generateFdfFor: aPdfForm [ 
 
 	inputFile := aPdfForm.
 	operation := 'generate_fdf'.
 ]
 
 { #category : #'as yet unclassified' }
-Pdftk >> initialize [
+PDFtk >> initialize [
 
 	super initialize.
 	outputConverter := [ :string | string ].
 	outputFlag := ''.
+	operationInput := PDFtkNullOperationInput new.
+]
+
+{ #category : #private }
+PDFtk >> operation [
+
+	^ operationInput appendedTo: operation.
 ]
 
 { #category : #'as yet unclassified' }
-Pdftk >> outputFlag [
+PDFtk >> outputFlag [
 
 	^ outputFlag.
 ]
 
 { #category : #'as yet unclassified' }
-Pdftk >> run [
+PDFtk >> run [
 
 	| process |
-	process := self class runnerClass waitForCommand: self command.
+	operationInput ensureFileDuring: [
+		process := self class runnerClass waitForCommand: self command ].
 	^ outputConverter value: process output.
 ]
 
 { #category : #'as yet unclassified' }
-Pdftk >> saveFilledForm: aPdfForm to: anAbstractFileReference [
+PDFtk >> saveFilledForm: aPdfForm to: anAbstractFileReference [
 
-	aPdfForm tempFdfFileDuring: [ :fdf |
-		inputFile := aPdfForm.
-		operation := 'fill_form ', fdf fullName surroundedByDoubleQuotes.
-		outputFlag := 'output ', anAbstractFileReference fullName surroundedByDoubleQuotes ].
+	inputFile := aPdfForm.
+	operation := 'fill_form'.
+	operationInput := aPdfForm fdf asPDFtkArgument.
+	outputFlag := 'output ', anAbstractFileReference fullName surroundedByDoubleQuotes.
 ]
 
 { #category : #output }
-Pdftk >> toStdOut [
+PDFtk >> toStdOut [
 
 	outputFlag := 'output -'.
 ]

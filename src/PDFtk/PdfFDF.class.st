@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'lines'
 	],
-	#category : #Pdftk
+	#category : #PDFtk
 }
 
 { #category : #'instance creation' }
@@ -13,6 +13,11 @@ PdfFDF class >> for: aPdfForm [
 	^ self new
 		form: aPdfForm;
 		yourself.
+]
+
+{ #category : #'pdftk adaption' }
+PdfFDF >> appendedTo: aString [ 
+	self shouldBeImplemented.
 ]
 
 { #category : #'as yet unclassified' }
@@ -25,11 +30,20 @@ PdfFDF >> at: fieldName put: aString [
 	lines at: nameIndex - 1 put: '/V (', aString, ')'.
 ]
 
+{ #category : #'pdftk adaption' }
+PdfFDF >> ensureFileDuring: aBlock [
+	
+	| tempFdfFile |
+	tempFdfFile := FileLocator imageDirectory / ('tempFdf', DateAndTime now asString) asLegalSelector.
+	self saveTo: tempFdfFile.
+	aBlock value ensure: [ tempFdfFile delete ].
+]
+
 { #category : #private }
 PdfFDF >> form: aPdfForm [ 
 
 	| contents |
-	contents := Pdftk new
+	contents := PDFtk new
 		generateFdfFor: aPdfForm;
 		toStdOut;
 		run.

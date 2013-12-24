@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'fdf'
 	],
-	#category : #Pdftk
+	#category : #PDFtk
 }
 
 { #category : #'instance creation' }
@@ -30,24 +30,14 @@ PdfForm >> fdf [
 { #category : #accessing }
 PdfForm >> fields [
 
-	^ Pdftk dumpFieldsOf: self.
+	^ PDFtk dumpFieldsOf: self.
 ]
 
 { #category : #'as yet unclassified' }
 PdfForm >> saveAs: anAbstractFileReference [
 
-	Pdftk new
+	PDFtk new
 		saveFilledForm: self to: anAbstractFileReference;
 		run.
 		
-]
-
-{ #category : #'as yet unclassified' }
-PdfForm >> tempFdfFileDuring: aBlock [
-	
-	| tempFdfFile |
-	tempFdfFile := FileLocator imageDirectory / (self fullName, DateAndTime now asString) asLegalSelector.
-	self fdf saveTo: tempFdfFile.
-	aBlock value: tempFdfFile.
-	tempFdfFile delete.
 ]

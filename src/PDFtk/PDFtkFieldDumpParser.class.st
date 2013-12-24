@@ -1,17 +1,17 @@
 Class {
-	#name : #PdftkFieldDumpParser,
+	#name : #PDFtkFieldDumpParser,
 	#superclass : #PPCompositeParser,
-	#category : #Pdftk
+	#category : #PDFtk
 }
 
 { #category : #'as yet unclassified' }
-PdftkFieldDumpParser >> attributeNamed: aString [
+PDFtkFieldDumpParser >> attributeNamed: aString [
 
 	^ aString asParser, ': ' asParser, self lineSeparator negate plus flatten, self lineSeparator ==> #third.
 ]
 
 { #category : #'as yet unclassified' }
-PdftkFieldDumpParser >> field [
+PDFtkFieldDumpParser >> field [
 
 	| type name flags value justification header default |
 	header := '---' asParser, self lineSeparator ==> #first.
@@ -29,19 +29,19 @@ PdftkFieldDumpParser >> field [
 ]
 
 { #category : #'as yet unclassified' }
-PdftkFieldDumpParser >> lineSeparator [
+PDFtkFieldDumpParser >> lineSeparator [
 
 	^ #lf asParser.
 ]
 
 { #category : #'as yet unclassified' }
-PdftkFieldDumpParser >> optionalAttributeNamed: aString [ 
+PDFtkFieldDumpParser >> optionalAttributeNamed: aString [ 
 
 	^ (self attributeNamed: aString) optional  ==> [ :node | node ifNil: [ '' ] ].
 ]
 
 { #category : #'as yet unclassified' }
-PdftkFieldDumpParser >> start [
+PDFtkFieldDumpParser >> start [
 
 	^ self field plus end.
 ]
