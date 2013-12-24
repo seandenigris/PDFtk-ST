@@ -20,6 +20,12 @@ PdfFDF >> appendedTo: aString [
 	self shouldBeImplemented.
 ]
 
+{ #category : #'pdftk adaption' }
+PdfFDF >> asPDFtkArgument [
+
+	^ PDFtkMemoryFileArgument on: self.
+]
+
 { #category : #'as yet unclassified' }
 PdfFDF >> at: fieldName put: aString [
 
