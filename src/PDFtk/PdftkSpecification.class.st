@@ -5,45 +5,30 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PdftkSpecification >> testCreation [
-
-	| pathString form |
-	pathString := '/usr/local/form.pdf'.
-	form := PdfForm at: pathString.
-	form fullName should = pathString.
+PdftkSpecification >> setUp [
+	
+	Pdftk runnerClass: PipeableOSProcessDouble.
 ]
 
 { #category : #'as yet unclassified' }
-PdftkSpecification >> testFields [
+PdftkSpecification >> tearDown [
 
-	| form file fields |
-	file := FileLocator imageDirectory / 'Mutual Tour Exchange.pdf'.
-	form := PdfForm at: file fullName.
-	fields := form fields.
-	fields first type should = 'Text'.
-	fields first name should = 'Station'.
-	fields first value should = '1'.
+	Pdftk runnerClass: PipeableOSProcess.
+	PipeableOSProcessDouble reset.
 ]
 
 { #category : #'as yet unclassified' }
 PdftkSpecification >> testFormDumpFields [
 
-	| form pdfPathString mockEvaluator output |
+	| form pdfPathString fields |
 	pdfPathString := '/usr/local/form.pdf'.
 	form := PdfForm at: pdfPathString.
 	
-	mockEvaluator := context mock: 'Evaluator'.
-	mockEvaluator should
-		receive: #waitForCommand:;
-		with: Pdftk binary fullName surroundedByDoubleQuotes, pdfPathString surroundedByDoubleQuotes, ' dump_data_fields'.
-	mockEvaluator should
-		receive: #output;
-		answers: 'sample output'.
+	PipeableOSProcessDouble
+		onCommand: Pdftk binary fullName surroundedByDoubleQuotes, ' ', pdfPathString surroundedByDoubleQuotes, ' dump_data_fields'
+		answer: Pdftk sampleFieldDumpOutput.
 	
-	Pdftk evaluatorClass: mockEvaluator.
-
-	output := Pdftk dumpFieldsOf: form.
-	output should = 'sample output'.
-
-	Pdftk evaluatorClass: OSProcess.
+	fields := Pdftk dumpFieldsOf: form.
+	fields size = 1.
+	fields first name should = 'Station'.
 ]
