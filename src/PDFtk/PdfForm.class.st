@@ -8,11 +8,9 @@ Class {
 }
 
 { #category : #'instance creation' }
-PdfForm class >> at: absolutePathString [
+PdfForm class >> at: stringOrFileReference [
 
-	| path |
-	path := Path from: absolutePathString.
-	^ self fileSystem: FileSystem disk path: path.
+	^ self fileSystem: FileSystem disk path: stringOrFileReference asFileReference path.
 ]
 
 { #category : #accessing }
