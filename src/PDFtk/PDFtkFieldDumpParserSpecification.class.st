@@ -1,5 +1,5 @@
 Class {
-	#name : #PdftkFieldDumpParserSpecification,
+	#name : #PDFtkFieldDumpParserSpecification,
 	#superclass : #BabyPhexample,
 	#instVars : [
 		'sampleInput'
@@ -8,19 +8,19 @@ Class {
 }
 
 { #category : #private }
-PdftkFieldDumpParserSpecification >> sampleInput [
+PDFtkFieldDumpParserSpecification >> sampleInput [
 
 	^ sampleInput
 ]
 
 { #category : #accessing }
-PdftkFieldDumpParserSpecification >> sampleInput: aString [
+PDFtkFieldDumpParserSpecification >> sampleInput: aString [
 
 	sampleInput := aString withUnixLineEndings.
 ]
 
 { #category : #'tests-unit' }
-PdftkFieldDumpParserSpecification >> testFieldWithValue [
+PDFtkFieldDumpParserSpecification >> testFieldWithValue [
 
 	| field |
 	self sampleInput: '---
@@ -38,7 +38,7 @@ FieldJustification: Center
 ]
 
 { #category : #'tests-unit' }
-PdftkFieldDumpParserSpecification >> testFieldWithValueDefault [
+PDFtkFieldDumpParserSpecification >> testFieldWithValueDefault [
 
 	| field |
 	self sampleInput: '---
@@ -55,7 +55,7 @@ FieldJustification: Center
 ]
 
 { #category : #'tests-unit' }
-PdftkFieldDumpParserSpecification >> testFieldWithoutValue [
+PDFtkFieldDumpParserSpecification >> testFieldWithoutValue [
 
 	| field |
 	self sampleInput: '---
@@ -72,7 +72,7 @@ FieldJustification: Center
 ]
 
 { #category : #'private-tests' }
-PdftkFieldDumpParserSpecification >> testMandatoryAttributeLine [
+PDFtkFieldDumpParserSpecification >> testMandatoryAttributeLine [
 
 	| parser value |
 	self sampleInput: 'FieldName: MyField
@@ -84,7 +84,7 @@ PdftkFieldDumpParserSpecification >> testMandatoryAttributeLine [
 ]
 
 { #category : #'private-tests' }
-PdftkFieldDumpParserSpecification >> testOptionalAttributeLine [
+PDFtkFieldDumpParserSpecification >> testOptionalAttributeLine [
 
 	| parser value |
 	self sampleInput: 'FieldName: MyField
@@ -96,7 +96,7 @@ PdftkFieldDumpParserSpecification >> testOptionalAttributeLine [
 ]
 
 { #category : #'tests-acceptance' }
-PdftkFieldDumpParserSpecification >> testParseFull [
+PDFtkFieldDumpParserSpecification >> testParseFull [
 
 	| fields |
 	self sampleInput: '---

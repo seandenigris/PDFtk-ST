@@ -1,5 +1,5 @@
 Class {
-	#name : #PdfFormField,
+	#name : #PDFtkFormField,
 	#superclass : #Object,
 	#instVars : [
 		'name',
@@ -10,31 +10,31 @@ Class {
 }
 
 { #category : #accessing }
-PdfFormField >> default [
+PDFtkFormField >> default [
 
 	^ default
 ]
 
 { #category : #accessing }
-PdfFormField >> default: aString [
+PDFtkFormField >> default: aString [
 
 	default := aString.
 ]
 
 { #category : #accessing }
-PdfFormField >> name [
+PDFtkFormField >> name [
 
 	^ name.
 ]
 
 { #category : #accessing }
-PdfFormField >> name: aString [
+PDFtkFormField >> name: aString [
 
 	name := aString.
 ]
 
 { #category : #'as yet unclassified' }
-PdfFormField >> printOn: aStream [
+PDFtkFormField >> printOn: aStream [
 
 	aStream
 		nextPutAll: 'Field ';
@@ -44,13 +44,13 @@ PdfFormField >> printOn: aStream [
 ]
 
 { #category : #accessing }
-PdfFormField >> value [
+PDFtkFormField >> value [
 
 	^ value.
 ]
 
 { #category : #accessing }
-PdfFormField >> value: aString [
+PDFtkFormField >> value: aString [
 
 	value := aString.
 ]

@@ -1,5 +1,5 @@
 Class {
-	#name : #PdfForm,
+	#name : #PDFtkForm,
 	#superclass : #FileReference,
 	#instVars : [
 		'fdf'
@@ -8,31 +8,31 @@ Class {
 }
 
 { #category : #'instance creation' }
-PdfForm class >> at: stringOrFileReference [
+PDFtkForm class >> at: stringOrFileReference [
 
 	^ self fileSystem: FileSystem disk path: stringOrFileReference asFileReference path.
 ]
 
 { #category : #accessing }
-PdfForm >> at: fieldName put: aString [
+PDFtkForm >> at: fieldName put: aString [
 
 	self fdf at: fieldName put: aString.
 ]
 
 { #category : #private }
-PdfForm >> fdf [
+PDFtkForm >> fdf [
 
-	^ fdf ifNil: [ fdf := PdfFDF for: self ].
+	^ fdf ifNil: [ fdf := PDFtkFDF for: self ].
 ]
 
 { #category : #accessing }
-PdfForm >> fields [
+PDFtkForm >> fields [
 
 	^ PDFtk dumpFieldsOf: self.
 ]
 
 { #category : #'as yet unclassified' }
-PdfForm >> saveAs: anAbstractFileReference [
+PDFtkForm >> saveAs: anAbstractFileReference [
 
 	PDFtk new
 		saveFilledForm: self to: anAbstractFileReference;

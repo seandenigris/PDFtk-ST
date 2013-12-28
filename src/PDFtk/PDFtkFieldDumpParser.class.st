@@ -22,7 +22,7 @@ PDFtkFieldDumpParser >> field [
 	default := self attributeNamed: 'FieldValueDefault'.
 	justification := self attributeNamed: 'FieldJustification'.
 	^ header, type, name, flags, value, default optional, justification ==> [ :nodes |
-			PdfFormField new
+			PDFtkFormField new
 				name: nodes third;
 				value: nodes fifth;
 				default: nodes sixth ].

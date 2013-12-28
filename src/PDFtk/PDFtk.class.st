@@ -43,7 +43,11 @@ PDFtk class >> dumpFieldsOf: aPdfForm [
 { #category : #accessing }
 PDFtk class >> runnerClass [
 
-	^ runnerClass
+	runnerClass ifNotNil: [ ^ runnerClass ].
+
+	^ Smalltalk os isWin32 
+		ifTrue: [ PDFtkWindowsProcess ]
+		ifFalse: [ PipeableOSProcess ].
 ]
 
 { #category : #'as yet unclassified' }
