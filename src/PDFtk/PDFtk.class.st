@@ -68,6 +68,12 @@ FieldJustification: Center
 ' withUnixLineEndings.
 ]
 
+{ #category : #accessing }
+PDFtk class >> tempFolder [
+
+	^ (FileLocator imageDirectory / 'tmp' / 'PDFtk') ensureDirectory.
+]
+
 { #category : #private }
 PDFtk >> command [
 
