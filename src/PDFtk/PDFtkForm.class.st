@@ -22,7 +22,7 @@ PDFtkForm >> at: fieldName put: aString [
 { #category : #private }
 PDFtkForm >> fdf [
 
-	^ fdf ifNil: [ fdf := PDFtkFDF for: self ].
+	^ fdf ifNil: [ fdf := PDFtkAssembledFDF new ].
 ]
 
 { #category : #accessing }

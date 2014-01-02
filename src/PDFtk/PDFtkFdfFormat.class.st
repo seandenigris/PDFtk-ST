@@ -24,19 +24,31 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PDFtkFdfFormat >> body [
+PDFtkFdfFormat >> bodyWith: fields [
 	"a body with a single object (ISO 32000 §12.7.7.2.3)"
 
-	^ '1 0 obj<</FDF<</Fields[', self fields, '] >> >>
+	^ '1 0 obj
+<</FDF
+<</Fields[
+', (self fieldsWith: fields) , ']
+>>
+>>
 endobj'.
 ]
 
 { #category : #'as yet unclassified' }
-PDFtkFdfFormat >> fields [
+PDFtkFdfFormat >> fieldsWith: fields [
 	"For example:"
 	
-	^ '<</T(Date)/V(12/25/2013)>>
-<</T(Station)/V(3)>>'
+	^ String streamContents: [ :str |
+		fields keysAndValuesDo: [ :key :value | 
+			str
+				nextPutAll: '<</T(';
+				nextPutAll: key;
+				nextPutAll: ')/V(';
+				nextPutAll: value;
+				nextPutAll: ')>>';
+				lf ] ].
 ]
 
 { #category : #'as yet unclassified' }
