@@ -7,7 +7,8 @@ Class {
 { #category : #'as yet unclassified' }
 PDFtkFieldDumpParser >> attributeNamed: aString [
 
-	^ aString asParser, ': ' asParser, self lineSeparator negate plus flatten, self lineSeparator ==> #third.
+	"N.B. we use start because the actual value can be absent in some cases"
+	^ aString asParser, ': ' asParser, self lineSeparator negate star flatten, self lineSeparator ==> #third.
 ]
 
 { #category : #'as yet unclassified' }
@@ -19,9 +20,9 @@ PDFtkFieldDumpParser >> field [
 	name := self attributeNamed: 'FieldName'.
 	flags := self attributeNamed: 'FieldFlags'.
 	value := self optionalAttributeNamed: 'FieldValue'.
-	default := self attributeNamed: 'FieldValueDefault'.
+	default := self optionalAttributeNamed: 'FieldValueDefault'.
 	justification := self attributeNamed: 'FieldJustification'.
-	^ header, type, name, flags, value, default optional, justification ==> [ :nodes |
+	^ header, type, name, flags, value, default, justification, header negate star ==> [ :nodes |
 			PDFtkFormField new
 				name: nodes third;
 				value: nodes fifth;
@@ -31,13 +32,14 @@ PDFtkFieldDumpParser >> field [
 { #category : #'as yet unclassified' }
 PDFtkFieldDumpParser >> lineSeparator [
 
-	^ #lf asParser.
+	"PDFtk uses #lf, but #cr is useful for testing e.g. parsing copy/pasted sample data"
+	^ #lf asParser / #cr asParser.
 ]
 
 { #category : #'as yet unclassified' }
 PDFtkFieldDumpParser >> optionalAttributeNamed: aString [ 
 
-	^ (self attributeNamed: aString) optional  ==> [ :node | node ifNil: [ '' ] ].
+	^ (self attributeNamed: aString) optional ==> [ :node | node ifNil: [ '' ] ].
 ]
 
 { #category : #'as yet unclassified' }
