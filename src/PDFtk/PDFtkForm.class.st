@@ -1,16 +1,19 @@
 Class {
 	#name : #PDFtkForm,
-	#superclass : #FileReference,
+	#superclass : #Object,
 	#instVars : [
+		'file',
 		'fdf'
 	],
 	#category : #PDFtk
 }
 
 { #category : #'instance creation' }
-PDFtkForm class >> at: stringOrFileReference [
+PDFtkForm class >> at: aStringOrFileReference [
 
-	^ self fileSystem: FileSystem disk path: stringOrFileReference asFileReference path.
+	^ self new
+		file: aStringOrFileReference asFileReference;
+		yourself
 ]
 
 { #category : #accessing }
@@ -29,6 +32,16 @@ PDFtkForm >> fdf [
 PDFtkForm >> fields [
 
 	^ PDFtk dumpFieldsOf: self.
+]
+
+{ #category : #accessing }
+PDFtkForm >> file [
+	^ file
+]
+
+{ #category : #accessing }
+PDFtkForm >> file: anObject [
+	file := anObject
 ]
 
 { #category : #'as yet unclassified' }

@@ -41,6 +41,11 @@ PDFtk class >> dumpFieldsOf: aPdfForm [
 ]
 
 { #category : #accessing }
+PDFtk class >> initialize [
+	self binary exists ifFalse: [ self inform: 'PDFtk binary missing. See https://www.pdflabs.com/tools/pdftk-server/ for installation instructions' ]
+]
+
+{ #category : #accessing }
 PDFtk class >> runnerClass [
 
 	runnerClass ifNotNil: [ ^ runnerClass ].
@@ -71,7 +76,7 @@ FieldJustification: Center
 { #category : #accessing }
 PDFtk class >> tempFolder [
 
-	^ (FileLocator imageDirectory / 'tmp' / 'PDFtk') ensureDirectory.
+	^ (FileLocator imageDirectory / 'tmp' / 'PDFtk') ensureCreateDirectory.
 ]
 
 { #category : #private }
@@ -85,7 +90,7 @@ PDFtk >> command [
 { #category : #'as yet unclassified' }
 PDFtk >> dumpFieldsOf: aPdfForm [ 
 
-	inputFile := aPdfForm.
+	inputFile := aPdfForm file.
 	operation := 'dump_data_fields'.
 	outputConverter := [ :string | | result |
 		result := PDFtkFieldDumpParser parse: string.
@@ -96,7 +101,7 @@ PDFtk >> dumpFieldsOf: aPdfForm [
 { #category : #'as yet unclassified' }
 PDFtk >> generateFdfFor: aPdfForm [ 
 
-	inputFile := aPdfForm.
+	inputFile := aPdfForm file.
 	operation := 'generate_fdf'.
 ]
 
@@ -133,7 +138,7 @@ PDFtk >> run [
 { #category : #'as yet unclassified' }
 PDFtk >> saveFilledForm: aPdfForm to: anAbstractFileReference [
 
-	inputFile := aPdfForm.
+	inputFile := aPdfForm file.
 	operation := 'fill_form'.
 	operationInput := aPdfForm fdf asPDFtkArgument.
 	outputFlag := 'output ', anAbstractFileReference fullName surroundedByDoubleQuotes.
