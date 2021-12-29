@@ -9,7 +9,7 @@ BaselineOfPDFtk >> baseline: spec [
 	<baseline>
 
 	spec for: #'common' do: [
-		spec package: 'Pdftk' ].
+		spec package: 'PDFtk' ].
 ]
 
 { #category : #accessing }
