@@ -1,6 +1,6 @@
 Class {
 	#name : #PDFtkFieldDumpParser,
-	#superclass : #PPCompositeParser,
+	#superclass : #PP2CompositeNode,
 	#category : #PDFtk
 }
 
