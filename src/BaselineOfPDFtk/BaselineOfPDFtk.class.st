@@ -11,11 +11,11 @@ BaselineOfPDFtk >> baseline: spec [
 	spec for: #'common' do: [
 	
 		spec
-			baseline: 'BabyPhexample' with: [
+			baseline: #'BabyPhexample' with: [
 				spec repository: 'github://seandenigris/Baby-Phexample' ].
 				
-		spec package: 'PDFtk' with: [ 
-			spec requires: #('BabyPhexample' )  ] ].
+		spec package: #'PDFtk' with: [ 
+			spec requires: #(#'BabyPhexample' )  ] ].
 ]
 
 { #category : #accessing }
