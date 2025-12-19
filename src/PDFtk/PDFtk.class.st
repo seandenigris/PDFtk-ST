@@ -8,8 +8,8 @@ where:
 - operation seems mostly to be a keyword and possibly a file argument (any of three kinds above)
 "
 Class {
-	#name : #PDFtk,
-	#superclass : #Object,
+	#name : 'PDFtk',
+	#superclass : 'Object',
 	#instVars : [
 		'command',
 		'outputConverter',
@@ -21,10 +21,11 @@ Class {
 	#classInstVars : [
 		'runnerClass'
 	],
-	#category : #PDFtk
+	#category : 'PDFtk',
+	#package : 'PDFtk'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtk class >> binary [
 
 	^ Smalltalk os isWin32
@@ -32,7 +33,7 @@ PDFtk class >> binary [
 		ifFalse:[ '/usr/local/bin/pdftk' asFileReference ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtk class >> dumpFieldsOf: aPdfForm [ 
 
 	^ self new
@@ -40,12 +41,12 @@ PDFtk class >> dumpFieldsOf: aPdfForm [
 		run.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtk class >> initialize [
 	self binary exists ifFalse: [ self inform: 'PDFtk binary missing. See https://www.pdflabs.com/tools/pdftk-server/ for installation instructions' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtk class >> runnerClass [
 
 	runnerClass ifNotNil: [ ^ runnerClass ].
@@ -55,13 +56,13 @@ PDFtk class >> runnerClass [
 		ifFalse: [ PipeableOSProcess ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtk class >> runnerClass: aClass [
 
 	 runnerClass := aClass.
 ]
 
-{ #category : #'*PDFtk-Specification' }
+{ #category : 'examples' }
 PDFtk class >> sampleFieldDumpOutput [
 
 	^ '---
@@ -73,13 +74,13 @@ FieldJustification: Center
 ' withUnixLineEndings.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtk class >> tempFolder [
 
 	^ (FileLocator imageDirectory / 'tmp' / 'PDFtk') ensureCreateDirectory.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PDFtk >> command [
 
 	| commandTemplate |
@@ -87,7 +88,7 @@ PDFtk >> command [
 	^ commandTemplate format: { self class binary fullName. inputFile fullName. self operation. self outputFlag }.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtk >> dumpFieldsOf: aPdfForm [ 
 
 	inputFile := aPdfForm file.
@@ -98,14 +99,14 @@ PDFtk >> dumpFieldsOf: aPdfForm [
 		result ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtk >> generateFdfFor: aPdfForm [ 
 
 	inputFile := aPdfForm file.
 	operation := 'generate_fdf'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtk >> initialize [
 
 	super initialize.
@@ -114,19 +115,19 @@ PDFtk >> initialize [
 	operationInput := PDFtkNullOperationInput new.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PDFtk >> operation [
 
 	^ operationInput appendedTo: operation.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtk >> outputFlag [
 
 	^ outputFlag.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtk >> run [
 
 	| process |
@@ -135,7 +136,7 @@ PDFtk >> run [
 	^ outputConverter value: process output.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtk >> saveFilledForm: aPdfForm to: anAbstractFileReference [
 
 	inputFile := aPdfForm file.
@@ -144,7 +145,7 @@ PDFtk >> saveFilledForm: aPdfForm to: anAbstractFileReference [
 	outputFlag := 'output ', anAbstractFileReference fullName surroundedByDoubleQuotes.
 ]
 
-{ #category : #output }
+{ #category : 'output' }
 PDFtk >> toStdOut [
 
 	outputFlag := 'output -'.

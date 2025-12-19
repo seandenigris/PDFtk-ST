@@ -1,25 +1,27 @@
 Class {
-	#name : #PDFtkFieldDumpParserSpecification,
-	#superclass : #BabyPhexample,
+	#name : 'PDFtkFieldDumpParserSpecification',
+	#superclass : 'BabyPhexample',
 	#instVars : [
 		'sampleInput'
 	],
-	#category : #'PDFtk-Specification'
+	#category : 'PDFtk-Specification',
+	#package : 'PDFtk',
+	#tag : 'Specification'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PDFtkFieldDumpParserSpecification >> sampleInput [
 
 	^ sampleInput
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtkFieldDumpParserSpecification >> sampleInput: aString [
 
 	sampleInput := aString withUnixLineEndings.
 ]
 
-{ #category : #'tests-unit' }
+{ #category : 'tests-unit' }
 PDFtkFieldDumpParserSpecification >> testFieldWithValue [
 
 	| field |
@@ -37,7 +39,7 @@ FieldJustification: Center
 	
 ]
 
-{ #category : #'tests-unit' }
+{ #category : 'tests-unit' }
 PDFtkFieldDumpParserSpecification >> testFieldWithValueDefault [
 
 	| field |
@@ -54,7 +56,7 @@ FieldJustification: Center
 	field default should = '10'.
 ]
 
-{ #category : #'tests-unit' }
+{ #category : 'tests-unit' }
 PDFtkFieldDumpParserSpecification >> testFieldWithoutValue [
 
 	| field |
@@ -71,7 +73,7 @@ FieldJustification: Center
 	
 ]
 
-{ #category : #'private-tests' }
+{ #category : 'private-tests' }
 PDFtkFieldDumpParserSpecification >> testMandatoryAttributeLine [
 
 	| parser value |
@@ -83,7 +85,7 @@ PDFtkFieldDumpParserSpecification >> testMandatoryAttributeLine [
 	value should = 'MyField'.
 ]
 
-{ #category : #'private-tests' }
+{ #category : 'private-tests' }
 PDFtkFieldDumpParserSpecification >> testOptionalAttributeLine [
 
 	| parser value |
@@ -95,7 +97,7 @@ PDFtkFieldDumpParserSpecification >> testOptionalAttributeLine [
 	value should = 'MyField'.
 ]
 
-{ #category : #'tests-acceptance' }
+{ #category : 'tests-acceptance' }
 PDFtkFieldDumpParserSpecification >> testParseFull [
 
 	| fields |

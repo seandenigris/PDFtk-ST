@@ -18,12 +18,14 @@ endobj
 pdftk understands raw text in the specified encoding ((…)), raw UTF-16 strings starting with a BOM ((\xFE\xFF…)), or UTF-16BE strings encoded as ASCII hex (<FEFF…>). You can use pdf-merge.py and its --unicode option to find the latter. Support for the /utf_8 encoding in pdftk is new. I mailed a patch to pdftk's Sid Steward and posted a patch request to the underlying iText library. Until those get accepted, you're stuck with the less convenient encodings.""
 "
 Class {
-	#name : #PDFtkFdfFormat,
-	#superclass : #Object,
-	#category : #'PDFtk-Experimental'
+	#name : 'PDFtkFdfFormat',
+	#superclass : 'Object',
+	#category : 'PDFtk-Experimental',
+	#package : 'PDFtk',
+	#tag : 'Experimental'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkFdfFormat >> bodyWith: fields [
 	"a body with a single object (ISO 32000 §12.7.7.2.3)"
 
@@ -36,7 +38,7 @@ PDFtkFdfFormat >> bodyWith: fields [
 endobj'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkFdfFormat >> fieldsWith: fields [
 	"For example:"
 	
@@ -51,14 +53,14 @@ PDFtkFdfFormat >> fieldsWith: fields [
 				lf ] ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkFdfFormat >> header [
 	"(ISO 32000 §12.7.7.2.2)"
 
 	^ '%FDF-1.2'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkFdfFormat >> trailer [
 	"Despite the claims in ISO 32000 §12.7.7.2.1 that the trailer is optional, pdftk choked on files without it. Trailers are easy to add, since all they reqire is a reference to the root of the FDF catalog dictionary. If you only have one dictionary, you can always use the simple trailer I gave above."
 	

@@ -2,11 +2,13 @@
 A PdfFormTest is a test class for testing the behavior of PdfForm
 "
 Class {
-	#name : #PdfFormTest,
-	#superclass : #TestCase,
-	#category : #'PDFtk-Tests'
+	#name : 'PdfFormTest',
+	#superclass : 'TestCase',
+	#category : 'PDFtk-Tests',
+	#package : 'PDFtk',
+	#tag : 'Tests'
 }
 
-{ #category : #'tests-as yet unclassified' }
+{ #category : 'tests-as yet unclassified' }
 PdfFormTest >> testSaveAs [
 ]

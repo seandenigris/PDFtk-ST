@@ -1,39 +1,40 @@
 Class {
-	#name : #PDFtkFormField,
-	#superclass : #Object,
+	#name : 'PDFtkFormField',
+	#superclass : 'Object',
 	#instVars : [
 		'name',
 		'value',
 		'default'
 	],
-	#category : #PDFtk
+	#category : 'PDFtk',
+	#package : 'PDFtk'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtkFormField >> default [
 
 	^ default
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtkFormField >> default: aString [
 
 	default := aString.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtkFormField >> name [
 
 	^ name.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtkFormField >> name: aString [
 
 	name := aString.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkFormField >> printOn: aStream [
 
 	aStream
@@ -43,13 +44,13 @@ PDFtkFormField >> printOn: aStream [
 		nextPutAll: self value surroundedBySingleQuotes.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtkFormField >> value [
 
 	^ value.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtkFormField >> value: aString [
 
 	value := aString.

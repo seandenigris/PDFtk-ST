@@ -1,34 +1,36 @@
 Class {
-	#name : #PipeableOSProcessDouble,
-	#superclass : #Object,
+	#name : 'PipeableOSProcessDouble',
+	#superclass : 'Object',
 	#instVars : [
 		'output'
 	],
 	#classInstVars : [
 		'answers'
 	],
-	#category : #'PDFtk-Specification'
+	#category : 'PDFtk-Specification',
+	#package : 'PDFtk',
+	#tag : 'Specification'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PipeableOSProcessDouble class >> answers [
 
 	^ answers ifNil: [ answers := Dictionary new ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PipeableOSProcessDouble class >> onCommand: commandString answer: anObject [ 
 
 	self answers at: commandString put: anObject.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PipeableOSProcessDouble class >> reset [
 
 	answers removeAll.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PipeableOSProcessDouble class >> waitForCommand: aString [
 
 	| output |
@@ -38,13 +40,13 @@ PipeableOSProcessDouble class >> waitForCommand: aString [
 		yourself.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PipeableOSProcessDouble >> output [
 
 	^ output
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PipeableOSProcessDouble >> output: aString [
 
 	output := aString.

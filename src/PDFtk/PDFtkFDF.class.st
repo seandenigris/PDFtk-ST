@@ -3,15 +3,16 @@ Acceptable formats:
 	PDFtk 1.41: UTF-8 (pretty easy to create manually); does not seem to accept UTF-16
 "
 Class {
-	#name : #PDFtkFDF,
-	#superclass : #Object,
+	#name : 'PDFtkFDF',
+	#superclass : 'Object',
 	#instVars : [
 		'lines'
 	],
-	#category : #PDFtk
+	#category : 'PDFtk',
+	#package : 'PDFtk'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PDFtkFDF class >> for: aPdfForm [ 
 
 	^ self new
@@ -19,13 +20,13 @@ PDFtkFDF class >> for: aPdfForm [
 		yourself.
 ]
 
-{ #category : #'pdftk adaption' }
+{ #category : 'pdftk adaption' }
 PDFtkFDF >> asPDFtkArgument [
 
 	^ PDFtkMemoryFileArgument on: self.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkFDF >> at: fieldName put: aString [
 
 	| fieldNameParser parser nameLine nameIndex bom valueLine isUtf16 encodedValue |
@@ -52,7 +53,7 @@ PDFtkFDF >> at: fieldName put: aString [
 	lines at: nameIndex - 1 put: encodedValue.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PDFtkFDF >> form: aPdfForm [ 
 
 	| contents |
@@ -63,13 +64,13 @@ PDFtkFDF >> form: aPdfForm [
 	lines := contents lines.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PDFtkFDF >> hasFieldNamed: aString [ 
 
 	^ lines anySatisfy: [ :e | '/T (', aString, ')' = e ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkFDF >> saveTo: file [
 
 	file writeStreamDo: [ :str | lines do: [ :line | str nextPutAll: line ] separatedBy: [ str lf ] ].

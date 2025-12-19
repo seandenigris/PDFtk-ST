@@ -1,13 +1,14 @@
 Class {
-	#name : #PDFtkWindowsProcess,
-	#superclass : #Object,
+	#name : 'PDFtkWindowsProcess',
+	#superclass : 'Object',
 	#instVars : [
 		'process'
 	],
-	#category : #PDFtk
+	#category : 'PDFtk',
+	#package : 'PDFtk'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkWindowsProcess class >> waitForCommand: aString [
 
 	^ self new
@@ -15,7 +16,7 @@ PDFtkWindowsProcess class >> waitForCommand: aString [
 		yourself.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkWindowsProcess >> initialize [
 
 	super initialize.
@@ -26,14 +27,14 @@ PDFtkWindowsProcess >> initialize [
 		useStderr.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkWindowsProcess >> output [
 
 	^ process upToEnd.
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkWindowsProcess >> waitForCommand: aString [
 
 	| command |

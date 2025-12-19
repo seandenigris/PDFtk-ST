@@ -1,17 +1,18 @@
 Class {
-	#name : #PDFtkFieldDumpParser,
-	#superclass : #PP2CompositeNode,
-	#category : #PDFtk
+	#name : 'PDFtkFieldDumpParser',
+	#superclass : 'PP2CompositeNode',
+	#category : 'PDFtk',
+	#package : 'PDFtk'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkFieldDumpParser >> attributeNamed: aString [
 
 	"N.B. we use start because the actual value can be absent in some cases"
 	^ aString asParser, ': ' asParser, self lineSeparator negate star flatten, self lineSeparator ==> #third.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkFieldDumpParser >> field [
 
 	| type name flags value justification header default |
@@ -29,20 +30,20 @@ PDFtkFieldDumpParser >> field [
 				default: nodes sixth ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkFieldDumpParser >> lineSeparator [
 
 	"PDFtk uses #lf, but #cr is useful for testing e.g. parsing copy/pasted sample data"
 	^ #lf asParser / #cr asParser.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkFieldDumpParser >> optionalAttributeNamed: aString [ 
 
 	^ (self attributeNamed: aString) optional ==> [ :node | node ifNil: [ '' ] ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkFieldDumpParser >> start [
 
 	^ self field plus end.

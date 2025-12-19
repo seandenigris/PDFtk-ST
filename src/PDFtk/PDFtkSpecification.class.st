@@ -1,23 +1,25 @@
 Class {
-	#name : #PDFtkSpecification,
-	#superclass : #BabyPhexample,
-	#category : #'PDFtk-Specification'
+	#name : 'PDFtkSpecification',
+	#superclass : 'BabyPhexample',
+	#category : 'PDFtk-Specification',
+	#package : 'PDFtk',
+	#tag : 'Specification'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkSpecification >> setUp [
 	
 	PDFtk runnerClass: PipeableOSProcessDouble.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkSpecification >> tearDown [
 
 	PDFtk runnerClass: PipeableOSProcess.
 	PipeableOSProcessDouble reset.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkSpecification >> testFormDumpFields [
 
 	| form pdfPathString fields |

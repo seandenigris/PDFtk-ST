@@ -1,14 +1,15 @@
 Class {
-	#name : #PDFtkForm,
-	#superclass : #Object,
+	#name : 'PDFtkForm',
+	#superclass : 'Object',
 	#instVars : [
 		'file',
 		'fdf'
 	],
-	#category : #PDFtk
+	#category : 'PDFtk',
+	#package : 'PDFtk'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PDFtkForm class >> at: aStringOrFileReference [
 
 	^ self new
@@ -16,35 +17,35 @@ PDFtkForm class >> at: aStringOrFileReference [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtkForm >> at: fieldName put: aString [
 
 	self fdf at: fieldName put: aString.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PDFtkForm >> fdf [
 
 	^ fdf ifNil: [ fdf := PDFtkAssembledFDF new ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtkForm >> fields [
 
 	^ PDFtk dumpFieldsOf: self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtkForm >> file [
 	^ file
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PDFtkForm >> file: anObject [
 	file := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkForm >> saveAs: anAbstractFileReference [
 
 	PDFtk new

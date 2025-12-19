@@ -1,10 +1,12 @@
 Class {
-	#name : #PdfFormSpecification,
-	#superclass : #TestCase,
-	#category : #'PDFtk-Specification'
+	#name : 'PdfFormSpecification',
+	#superclass : 'TestCase',
+	#category : 'PDFtk-Specification',
+	#package : 'PDFtk',
+	#tag : 'Specification'
 }
 
-{ #category : #'tests-unit' }
+{ #category : 'tests-unit' }
 PdfFormSpecification >> testCreation [
 
 	| pathString form |
@@ -13,7 +15,7 @@ PdfFormSpecification >> testCreation [
 	form fullName should = pathString.
 ]
 
-{ #category : #'tests-acceptance' }
+{ #category : 'tests-acceptance' }
 PdfFormSpecification >> testFields [
 
 	| form file fields |

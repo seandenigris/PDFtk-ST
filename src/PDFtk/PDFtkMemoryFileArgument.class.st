@@ -1,14 +1,15 @@
 Class {
-	#name : #PDFtkMemoryFileArgument,
-	#superclass : #Object,
+	#name : 'PDFtkMemoryFileArgument',
+	#superclass : 'Object',
 	#instVars : [
 		'model',
 		'tempFile'
 	],
-	#category : #PDFtk
+	#category : 'PDFtk',
+	#package : 'PDFtk'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PDFtkMemoryFileArgument class >> on: anObject [
 
 	^ self new
@@ -16,13 +17,13 @@ PDFtkMemoryFileArgument class >> on: anObject [
 		yourself.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkMemoryFileArgument >> appendedTo: aString [ 
 
 	^ aString, ' ', tempFile fullName surroundedByDoubleQuotes.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkMemoryFileArgument >> ensureFileDuring: aBlock [
 	
 	tempFile := PDFtk tempFolder / ('PDFtkTemp', DateAndTime now asString) asLegalSelector, 'fdf'.
@@ -30,7 +31,7 @@ PDFtkMemoryFileArgument >> ensureFileDuring: aBlock [
 	aBlock ensure: [ tempFile delete ].
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PDFtkMemoryFileArgument >> model: anObject [
 
 	model := anObject.

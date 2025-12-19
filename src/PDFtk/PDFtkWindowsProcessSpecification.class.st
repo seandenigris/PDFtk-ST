@@ -1,10 +1,12 @@
 Class {
-	#name : #PDFtkWindowsProcessSpecification,
-	#superclass : #BabyPhexample,
-	#category : #'PDFtk-Specification'
+	#name : 'PDFtkWindowsProcessSpecification',
+	#superclass : 'BabyPhexample',
+	#category : 'PDFtk-Specification',
+	#package : 'PDFtk',
+	#tag : 'Specification'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PDFtkWindowsProcessSpecification >> test1 [
 
 	"I want to test that the uderlying ProcessWrapper recieves the messages necessary for the code to work. However, I don't want to add accessors on the class-side, where they would need to be to test this class-side convenience method.
